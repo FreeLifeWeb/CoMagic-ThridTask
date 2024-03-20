@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./styles/styles-reset.css" />
+        <link rel="stylesheet" href="./styles/style-mainContent.css" />
+        <script defer src="./scripts/jssip.min.js"></script>
+        <script defer src="./scripts/maincontent.js"></script>
+        <title>Softphone-dealpad</title>
+    </head>
+    <body>
+        <div class="container-main-content">
+            <header>
+                <div class="menu">
+                    <ul class="list-group">
+                        <div class="user-info" id="user-info"></div>
+                        <li class="list">
+                            <a href="#" class="link-container">
+                                <div>
+                                    <img
+                                        src="./icons/history.svg"
+                                        alt="History"
+                                        class="icon"
+                                    />
+                                </div>
+                                History
+                            </a>
+                        </li>
+                        <li class="list">
+                            <a href="#" class="link-container-dialpad">
+                                <div>
+                                    <img
+                                        src="./icons/phone.svg"
+                                        alt="DialPad"
+                                        class="icon"
+                                    />
+                                </div>
+                                DialPad
+                            </a>
+                        </li>
+                        <li class="list">
+                            <a href="#" class="link-container">
+                                <div>
+                                    <img
+                                        src="./icons/contacts.svg"
+                                        alt="Contacts"
+                                        class="icon"
+                                    />
+                                </div>
+                                Contacts
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <main>
+                <section class="number-pad-section">
+                    <div class="number-pad-container">
+                        <div class="number-pad">
+                            <div class="number" data-number="1">1</div>
+                            <div class="number" data-number="2">
+                                2
+                                <div class="abc">ABC</div>
+                            </div>
+                            <div class="number" data-number="3">
+                                3
+                                <div class="abc">DEF</div>
+                            </div>
+                            <div class="number" data-number="4">
+                                4
+                                <div class="abc">GHI</div>
+                            </div>
+                            <div class="number" data-number="5">
+                                5
+                                <div class="abc">JKL</div>
+                            </div>
+                            <div class="number" data-number="6">
+                                6
+                                <div class="abc">MNO</div>
+                            </div>
+                            <div class="number" data-number="7">
+                                7
+                                <div class="abc">PQRS</div>
+                            </div>
+                            <div class="number" data-number="8">
+                                8
+                                <div class="abc">TUV</div>
+                            </div>
+                            <div class="number" data-number="9">
+                                9
+                                <div class="abc">WXYZ</div>
+                            </div>
+                            <div class="astra">*</div>
+                            <div class="number" data-number="0">
+                                0
+                                <div class="abc">+</div>
+                            </div>
+                            <div class="clear">
+                                <img
+                                    src="./icons/clear.svg"
+                                    alt="clear"
+                                    class="icon"
+                                />
+                            </div>
+                            <button class="button-message">
+                                <img
+                                    src="./icons/message.svg"
+                                    alt="DialPad"
+                                    class="icon"
+                                />
+                            </button>
+                            <button class="button-call">
+                                <img
+                                    src="./icons/phone.svg"
+                                    alt="DialPad"
+                                    class="icon"
+                                />
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <section class="call-section">
+                    <div class="abonent-conteiner">
+                        <div>
+                            <img
+                                src="./icons/avatar.svg"
+                                alt="abonent"
+                                class="avatar"
+                            />
+                        </div>
+                        <div class="abonent-name"></div>
+                        <div class="abonent-time">0:01</div>
+                        <div class="abonent-button-group">
+                            <button class="abonent-button-answer">
+                                <img
+                                    src="./icons/phone-answer.svg"
+                                    alt="phone-answer"
+                                />
+                            </button>
+                            <button class="abonent-button-pause">
+                                <img
+                                    src="./icons/phone-pause.svg"
+                                    alt="phone-pause"
+                                /></button
+                            ><button class="abonent-button-none">
+                                <img
+                                    src="./icons/phone-none.svg"
+                                    alt="phone-none"
+                                />
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </body>
+</html>

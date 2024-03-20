@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./styles/styles-reset.css" />
+        <link rel="stylesheet" href="./styles/style-registrationForm.css" />
+        <script defer src="./scripts/registrationScript.js"></script>
+        <title>Softphone-registration</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="registration-form">
+                <h3 class="title">Registration</h3>
+                <form id="form-registration">
+                    <div>
+                        <input
+                            type="text"
+                            class="input-group"
+                            id="server"
+                            placeholder="Your server name..."
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            class="input-group"
+                            id="login"
+                            placeholder="Enter your login..."
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            class="input-group"
+                            id="password"
+                            placeholder="Enter your password..."
+                        />
+                    </div>
+                    <div>
+                        <button
+                            type="submit"
+                            class="registration-btn"
+                            id="registration-btn"
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script defer src="./scripts/jssip.min.js"></script>
+    </body>
+</html>

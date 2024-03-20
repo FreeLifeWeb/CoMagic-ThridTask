@@ -1,0 +1,170 @@
+.main-container {
+    width: 100%;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+}
+
+/* Боковое меню */
+
+.side-menu {
+    height: 100vh;
+    background-color: rgb(63, 62, 62);
+    display: flex;
+}
+
+.items-group {
+    list-style: none;
+    margin-top: 100px;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 0;
+}
+
+.item-list {
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.item-list a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    font-size: 15px;
+}
+.item-list a:hover {
+    background-color: rgb(130, 112, 237);
+}
+.link-item-container {
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.link-item-container-history {
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: rgb(130, 112, 237);
+}
+.icon-link {
+    height: 2em;
+}
+
+/* Основной контент */
+
+.main-content {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: nowrap;
+}
+/* Секция с историей звонков */
+.history-section {
+    width: 40%;
+    height: 100vh;
+    margin-top: 30px;
+    margin-left: 15px;
+}
+
+.list-history {
+    list-style: none;
+}
+
+.item-history {
+    cursor: pointer;
+    margin-bottom: 20px;
+    color: rgb(130, 112, 237);
+    font-size: 30px;
+}
+
+.phone-history-icon {
+    height: 1em;
+    border-radius: 5px;
+    margin-left: 5px;
+    background-color: rgb(98, 200, 98);
+    vertical-align: middle;
+}
+/* Секция с интерфейсом звонка абоненту */
+.section-of-call {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 100vh;
+    background-color: rgb(63, 62, 62);
+}
+
+.conteiner-for-abonent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+}
+
+.abonent-avatar {
+    height: 9em;
+}
+
+.abonent-number {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.time-calling {
+    color: rgb(189, 184, 184);
+    margin-top: 10px;
+}
+
+.button-group-for-call {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-pause {
+    width: 20%;
+    height: 70px;
+    margin: 10px;
+    border: 1px solid white;
+    border-radius: 50%;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.button-pause:hover {
+    border: 3px solid rgb(130, 112, 237);
+}
+.button-none {
+    width: 20%;
+    height: 70px;
+    margin: 10px;
+    border: 1px solid white;
+    border-radius: 50%;
+    background-color: rgb(237, 85, 85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.button-none:hover {
+    border: 3px solid rgb(130, 112, 237);
+}
+
+.button-pause img {
+    height: 3em;
+}
+.button-none img {
+    height: 3em;
+}
