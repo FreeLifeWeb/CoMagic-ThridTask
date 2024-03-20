@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     };
                     var options = {
                         eventHandlers: eventHandlers,
-                        mediaConstraints: { audio: true, video: false },
+                        mediaConstraints: { audio: true, video: true },
                     };
 
                     var session = softForCall.call(
