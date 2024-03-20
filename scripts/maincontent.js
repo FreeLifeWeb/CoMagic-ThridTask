@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     };
                     var options = {
                         eventHandlers: eventHandlers,
-                        mediaConstraints: { audio: true, video: true },
+                        mediaConstraints: { audio: true, video: false },
                     };
 
                     var session = softForCall.call(
@@ -128,7 +128,9 @@ document.addEventListener('DOMContentLoaded', function () {
                             cancelButton.style.display = 'block';
 
                             // Принять входящий вызов
-                            incomingSession.answer(options);
+                            incomingSession.answer({
+                                mediaConstraints: { audio: true, video: false },
+                            });
                         });
                     });
                 });
