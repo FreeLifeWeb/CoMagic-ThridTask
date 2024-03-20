@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const answerButton = document.querySelector('.abonent-button-answer');
     // отображение времени звонка
     const callTime = document.querySelector('.abonent-time');
-
+    let session;
     // Скрытие кнопок и времени звонка
     pauseButton.style.display = 'none';
     cancelButton.style.display = 'none';
@@ -51,7 +51,27 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     clearUserNumberForCall();
 
-    // Функция для осуществления звонка
+    // Функция для запуска отсчета времени разговора
+    function startCallTimer() {
+        let startTime = new Date();
+
+        let timerInterval = setInterval(function () {
+            let currentTime = new Date();
+            let elapsedTime = Math.floor((currentTime - startTime) / 1000);
+            let minutes = Math.floor(elapsedTime / 60);
+            let seconds = elapsedTime / 60;
+
+            callTime.textContent = `${minutes} мин: ${seconds} сек`;
+        }, 1000);
+
+        function stopCallTimer() {
+            clearInterval(timerInterval);
+            callTime.textContent = '';
+        }
+
+        return stopCallTimer;
+    }
+
     function makeCall() {
         console.log('currentNumber', currentNumber);
         if (currentNumber) {
@@ -96,12 +116,22 @@ document.addEventListener('DOMContentLoaded', function () {
                             console.log('Звонок подтвержден');
                         },
                     };
+
                     var options = {
                         eventHandlers: eventHandlers,
-                        mediaConstraints: { audio: true, video: false },
+                        pcConfig: {
+                            hackStripTcp: true,
+                        },
+                        mediaConstraints: {
+                            audio: true,
+                            video: false,
+                        },
+                        rtcOfferConstraints: {
+                            offerToReceiveAudio: 1,
+                            offerToReceiveVideo: 0,
+                        },
                     };
-
-                    var session = softForCall.call(
+                    session = softForCall.call(
                         `sip:${currentNumber}@${localStorage.getItem(
                             'server'
                         )}`,
@@ -122,14 +152,31 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Обработчик нажатия на кнопку принятия вызова
                         answerButton.addEventListener('click', function () {
                             console.log('Принять вызов');
-                            // По нажатию на кнопку принятия вызова скрываем ее и показываем кнопки отмены и паузы
+                            let stopTimer = startCallTimer();
                             answerButton.style.display = 'none';
                             pauseButton.style.display = 'block';
                             cancelButton.style.display = 'block';
 
                             // Принять входящий вызов
                             incomingSession.answer(options);
+
+                            incomingSession.on('ended', function () {
+                                stopTimer();
+                            });
                         });
+                    });
+
+                    // Обработчик нажатия на кнопку отмены разговора
+                    cancelButton.addEventListener('click', function () {
+                        console.log('Отменить звонок');
+                        if (session) {
+                            session.terminate(); // Отмена текущего разговора
+                        }
+                        // Возвращаемся к исходному состоянию кнопок
+                        pauseButton.style.display = 'none';
+                        cancelButton.style.display = 'none';
+                        callTime.style.display = 'none';
+                        answerButton.style.display = 'block';
                     });
                 });
             } catch (error) {
