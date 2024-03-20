@@ -128,9 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             cancelButton.style.display = 'block';
 
                             // Принять входящий вызов
-                            incomingSession.answer({
-                                mediaConstraints: { audio: true, video: false },
-                            });
+                            incomingSession.answer(options);
                         });
                     });
                 });
