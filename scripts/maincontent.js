@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         return stopCallTimer;
     }
-
+    // функция звонка
     function makeCall() {
         console.log('currentNumber', currentNumber);
         if (currentNumber) {
@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             console.log(
                                 'Не удалось совершить звонок: ' + e.cause
                             );
+                            // console.log(session);
                         },
                         ended: function (e) {
                             console.log('Звонок завершен: ' + e.cause);
@@ -167,17 +168,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
 
                     // Обработчик нажатия на кнопку отмены разговора
-                    cancelButton.addEventListener('click', function () {
+                    function endConversation() {
                         console.log('Отменить звонок');
-                        if (session) {
+                        console.log(session);
+                        if (session && session.isEstablished()) {
                             session.terminate(); // Отмена текущего разговора
                         }
-                        // Возвращаемся к исходному состоянию кнопок
+
                         pauseButton.style.display = 'none';
                         cancelButton.style.display = 'none';
                         callTime.style.display = 'none';
                         answerButton.style.display = 'block';
-                    });
+                    }
+                    cancelButton.addEventListener('click', endConversation);
                 });
             } catch (error) {
                 console.log('Ошибка при звонке: ' + error);
