@@ -143,28 +143,52 @@ document.addEventListener('DOMContentLoaded', function () {
                     softForCall.on('newRTCSession', function (e) {
                         console.log('Получен входящий вызов');
                         let incomingSession = e.session;
-                        let incomingNumber = e.request.from.uri.user;
+                        if (incomingSession) {
+                            console.log(incomingSession);
+                            let incomingNumber = e.request.from.uri.user;
 
-                        // Показываем кнопку принятия вызова и скрываем кнопки отмены и паузы
-                        answerButton.style.display = 'block';
-                        pauseButton.style.display = 'none';
-                        cancelButton.style.display = 'none';
+                            // Воспроизведение звукового сигнала о входящем вызове
+                            console.log('Входящий звонок - динь-динь!!');
+                            // Показываем кнопку принятия вызова и скрываем кнопки отмены и паузы
+                            answerButton.style.display = 'block';
+                            pauseButton.style.display = 'none';
+                            cancelButton.style.display = 'none';
 
-                        // Обработчик нажатия на кнопку принятия вызова
-                        answerButton.addEventListener('click', function () {
-                            console.log('Принять вызов');
-                            let stopTimer = startCallTimer();
-                            answerButton.style.display = 'none';
-                            pauseButton.style.display = 'block';
-                            cancelButton.style.display = 'block';
+                            // Обработчик нажатия на кнопку принятия вызова
+                            answerButton.addEventListener('click', function () {
+                                console.log('Принять вызов');
+                                let stopTimer = startCallTimer();
+                                answerButton.style.display = 'none';
+                                pauseButton.style.display = 'block';
+                                cancelButton.style.display = 'block';
 
-                            // Принять входящий вызов
-                            incomingSession.answer(options);
+                                // Принять входящий вызов
+                                incomingSession.answer(options);
 
-                            incomingSession.on('ended', function () {
-                                stopTimer();
+                                incomingSession.on('ended', function () {
+                                    stopTimer();
+                                });
+
+                                // Получаем доступ к микрофону и передаем его аудио потоку
+                                navigator.mediaDevices
+                                    .getUserMedia({ audio: true })
+                                    .then(function (stream) {
+                                        // Записываем медиапоток в локальную переменную
+                                        window.localStream = stream;
+                                        // Передаем медиапоток в аудио поток сессии
+                                        console.log(incomingSession.connection);
+                                        incomingSession.connection.addStream(
+                                            window.localStream
+                                        );
+                                    })
+                                    .catch(function (err) {
+                                        console.log(
+                                            'Ошибка при получении доступа к микрофону: ' +
+                                                err
+                                        );
+                                    });
                             });
-                        });
+                        }
                     });
 
                     // Обработчик нажатия на кнопку отмены разговора
@@ -178,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         pauseButton.style.display = 'none';
                         cancelButton.style.display = 'none';
                         callTime.style.display = 'none';
-                        answerButton.style.display = 'block';
+                        answerButton.style.display = 'none';
                     }
                     cancelButton.addEventListener('click', endConversation);
                 });
