@@ -21,6 +21,12 @@
     padding: 0;
 }
 
+.user-info {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
 .item-list {
     cursor: pointer;
     margin-bottom: 20px;
@@ -64,19 +70,26 @@
     display: flex;
     flex-wrap: nowrap;
 }
-/* Секция с историей звонков */
-.history-section {
-    width: 40%;
+/* Секция с историей входящих звонков */
+.history-section-incoming-call {
+    width: 50%;
     height: 100vh;
-    margin-top: 30px;
-    margin-left: 15px;
+    overflow-y: auto;
 }
 
 .list-history {
+    margin-top: 30px;
+    margin-left: 15px;
     list-style: none;
 }
 
+.title-incoming-call {
+    margin-top: 10px;
+    margin-left: 10px;
+}
 .item-history {
+    display: flex;
+    justify-content: space-between;
     cursor: pointer;
     margin-bottom: 20px;
     color: rgb(130, 112, 237);
@@ -87,84 +100,27 @@
     height: 1em;
     border-radius: 5px;
     margin-left: 5px;
+    margin-right: 10px;
     background-color: rgb(98, 200, 98);
     vertical-align: middle;
 }
-/* Секция с интерфейсом звонка абоненту */
-.section-of-call {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60%;
-    height: 100vh;
-    background-color: rgb(63, 62, 62);
-}
-
-.conteiner-for-abonent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+/* Секция с входящими звонками */
+.history-section-outgoing-call {
     width: 50%;
+    height: 100vh;
+    margin-left: 15px;
+    background-color: rgb(63, 62, 62);
+    overflow-y: auto;
 }
 
-.abonent-avatar {
-    height: 9em;
+.list-history-outgoing {
+    margin-top: 30px;
+    margin-left: 15px;
+    list-style: none;
 }
 
-.abonent-number {
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    margin-top: 20px;
-}
-
-.time-calling {
-    color: rgb(189, 184, 184);
+.title-outgoing-call {
     margin-top: 10px;
-}
-
-.button-group-for-call {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
-
-.button-pause {
-    width: 20%;
-    height: 70px;
-    margin: 10px;
-    border: 1px solid white;
-    border-radius: 50%;
-    background-color: grey;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-.button-pause:hover {
-    border: 3px solid rgb(130, 112, 237);
-}
-.button-none {
-    width: 20%;
-    height: 70px;
-    margin: 10px;
-    border: 1px solid white;
-    border-radius: 50%;
-    background-color: rgb(237, 85, 85);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-.button-none:hover {
-    border: 3px solid rgb(130, 112, 237);
-}
-
-.button-pause img {
-    height: 3em;
-}
-.button-none img {
-    height: 3em;
+    margin-left: 10px;
+    color: aliceblue;
 }

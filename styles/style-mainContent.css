@@ -215,8 +215,9 @@ main {
 }
 
 .abonent-time {
-    color: rgb(189, 184, 184);
+    color: white;
     margin-top: 10px;
+    font-size: 15px;
 }
 
 .abonent-button-group {
