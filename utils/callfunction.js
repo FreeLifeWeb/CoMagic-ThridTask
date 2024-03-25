@@ -118,20 +118,20 @@ function makeCall(number) {
                                         );
                                         let remoteStream = event.stream;
 
-                                        // Передача аудио потока собеседника в микрофон
-                                        let audioContext = new AudioContext();
-                                        let audioInput =
-                                            audioContext.createMediaStreamSource(
-                                                remoteStream
-                                            );
-                                        let audioOutput =
-                                            audioContext.createMediaStreamDestination();
-                                        audioInput.connect(audioOutput);
+                                        let audioElement =
+                                            document.createElement('audio');
+                                        audioElement.id = 'remoteAudio';
+                                        audioElement.autoplay = true;
+                                        audioElement.style.display = 'none';
 
-                                        // Запись аудио потока собеседника в микрофон
-                                        window.localStream = audioOutput.stream;
+                                        // Подключаем аудио поток собеседника к аудио элементу
+                                        audioElement.srcObject = remoteStream;
+
+                                        // Добавляем аудио элемент на страницу
+                                        document.body.appendChild(audioElement);
                                     }
                                 );
+
                                 incomingSession.on('ended', function () {
                                     stopTimer();
                                     accessConstant.abonentName.textContent = '';
