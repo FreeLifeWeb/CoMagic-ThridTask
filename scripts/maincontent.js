@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const phoneNumber = urlParams.get('phoneNumber');
     console.log('phoneNumber', phoneNumber);
     if (phoneNumber) {
+        console.log(phoneNumber);
         makeCall(phoneNumber);
     }
 

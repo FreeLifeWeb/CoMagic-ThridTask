@@ -30,7 +30,7 @@ function makeCall(number) {
                 console.log('Соединение установлено, совершаем вызов');
                 var eventHandlers = {
                     progress: function (e) {
-                        console.log('Звонок в процессе');
+                        console.log('Звонок в процессе' + e.data);
                         accessConstant.pauseButton.style.display = 'block';
                         accessConstant.cancelButton.style.display = 'block';
                         accessConstant.callTime.style.display = 'block';
@@ -38,9 +38,7 @@ function makeCall(number) {
                         stopTimer = startCallTimer();
                     },
                     failed: function (e) {
-                        // console.log(
-                        //     'Не удалось совершить звонок: ' + e.cause
-                        // );
+                        console.log('Не удалось совершить звонок: ' + e.cause);
                         alert('Не удалось совершить звонок: ' + e.cause);
                         accessConstant.abonentName.textContent = '';
                     },
@@ -60,6 +58,7 @@ function makeCall(number) {
                     eventHandlers: eventHandlers,
                     pcConfig: {
                         hackStripTcp: true,
+                        iceServers: [],
                     },
                     mediaConstraints: {
                         audio: true,
@@ -111,6 +110,28 @@ function makeCall(number) {
                                 // Принять входящий вызов
                                 incomingSession.answer(options);
 
+                                incomingSession.connection.addEventListener(
+                                    'addstream',
+                                    function (event) {
+                                        console.log(
+                                            'Аудио поток собеседника получен'
+                                        );
+                                        let remoteStream = event.stream;
+
+                                        // Передача аудио потока собеседника в микрофон
+                                        let audioContext = new AudioContext();
+                                        let audioInput =
+                                            audioContext.createMediaStreamSource(
+                                                remoteStream
+                                            );
+                                        let audioOutput =
+                                            audioContext.createMediaStreamDestination();
+                                        audioInput.connect(audioOutput);
+
+                                        // Запись аудио потока собеседника в микрофон
+                                        window.localStream = audioOutput.stream;
+                                    }
+                                );
                                 incomingSession.on('ended', function () {
                                     stopTimer();
                                     accessConstant.abonentName.textContent = '';
@@ -142,7 +163,7 @@ function makeCall(number) {
                 // Обработчик нажатия на кнопку отмены разговора
                 function endConversation() {
                     console.log('Отменить звонок');
-                    console.log(session);
+                    // console.log(session);
                     if (session && session.isEstablished()) {
                         session.terminate(); // Отмена текущего разговора
                     }

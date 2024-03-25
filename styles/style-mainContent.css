@@ -1,5 +1,5 @@
 .container-main-content {
-    width: 100%;
+    width: 100vw;
     margin: 0 auto;
     height: 100vh;
     display: flex;

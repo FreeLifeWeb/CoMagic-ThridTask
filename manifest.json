@@ -1,0 +1,29 @@
+{
+    "manifest_version": 3,
+    "name": "Мой Софтфон",
+    "version": "1.0",
+    "description": "Расширение для софтфона",
+    "action": {
+      "default_popup": "index.html",
+      "default_icon": "./icons/Phone.png"
+    },
+    "icons": {
+      "48": "./icons/Phone.png"
+    },
+    "web_accessible_resources": [
+      {
+        "resources": [
+          "index.html",
+          "main-content.html",
+          "history.html",
+          "./scripts/history.js",
+          "./scripts/jssip.min.js",
+          "./scripts/maincontent.js",
+          "./scripts/registrationScript.js"
+        ],
+        "matches": ["<all_urls>"]
+      }
+    ],
+    "permissions": ["activeTab"]
+  }
+  
